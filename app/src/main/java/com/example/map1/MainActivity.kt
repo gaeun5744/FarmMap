@@ -60,12 +60,12 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 
-        screenShotButton.setOnClickListener {
+        /*screenShotButton.setOnClickListener {
             val bitmap=getScreenShotFromView(mapFragmentView)
             if (bitmap!=null){
                 saveMediaToStorage(bitmap)
             }
-        }
+        }*/
 
 
 
@@ -222,8 +222,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
         screenShotButton.setOnClickListener {
-
-
+            googleMap.snapshot {
+                it?.let {
+                    saveMediaToStorage(it)
+                }
+            }
         }
 
 
