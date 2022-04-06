@@ -25,7 +25,7 @@ import java.io.FileOutputStream
 import java.io.OutputStream
 
 
-private lateinit var mMap: GoogleMap
+
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var db:locationDatabase
@@ -43,11 +43,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.activity_main)
 
 
-
-
         db= Room.databaseBuilder(applicationContext,locationDatabase::class.java,"locationDatabase").allowMainThreadQueries().build()
-
-
 
 
         val mapFragment = supportFragmentManager
@@ -55,100 +51,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
         mapFragment.getMapAsync(this)
 
-        //var v=window.decorView
-
-
-
-
-        /*screenShotButton.setOnClickListener {
-            val bitmap=getScreenShotFromView(mapFragmentView)
-            if (bitmap!=null){
-                saveMediaToStorage(bitmap)
-            }
-        }*/
-
-
-
 
     }
 
 
-    ////////////////////////////////캡쳐기능구현
 
-    /*private fun snapshot(googleMap: GoogleMap){
-
-        var mapImageView:ImageView=findViewById(R.id.map)
-
-        screenShotButton.setOnClickListener {
-            var callback:GoogleMap.SnapshotReadyCallback=GoogleMap.SnapshotReadyCallback {
-                var screenshot: Bitmap? = null
-                screenshot = Bitmap.createBitmap(mapFragmentView.measuredWidth, mapFragmentView.measuredHeight, Bitmap.Config.ARGB_8888)
-                val canvas = Canvas(screenshot)
-                mapFragmentView.draw(canvas)
-            }
-            googleMap.snapshot(callback)
-
-        }
-
-
-    }*/
-
-    /*fun snapshot(googleMap: GoogleMap){
-
-
-
-        screenShotButton.setOnClickListener {
-            var mapImageView:ImageView=findViewById(R.id.map)
-            var callback:GoogleMap.SnapshotReadyCallback=GoogleMap.SnapshotReadyCallback {
-                fun onSnapshotReady(snapshot:Bitmap){
-                    mapImageView.setImageBitmap(snapshot)
-                }
-            }
-            googleMap.snapshot(callback)
-
-        }
-
-
-    }*///
-
-
-
-
-
-
-    /*private fun takePicture(googleMap: GoogleMap) {
-
-        var mapImageView:ImageView=findViewById(R.id.map)
-
-        var bitmapfrommap: Bitmap? = null
-        val snapshotReadyCallback : GoogleMap.SnapshotReadyCallback = GoogleMap.SnapshotReadyCallback {
-            fun onSnapshotReady(snapshot: Bitmap) {
-                bitmapfrommap = snapshot
-                mapImageView.setImageBitmap(bitmapfrommap)
-                var filename = "export.png"
-                var path = getExternalFilesDir(null)
-                var fileOut = File(path, filename)
-                if (bitmapfrommap != null) {
-                    fileOut.writeBitmap(bitmapfrommap!!, Bitmap.CompressFormat.PNG, 85)
-                }
-            }
-        }
-        val onMapLoadedCallback : GoogleMap.OnMapLoadedCallback = GoogleMap.OnMapLoadedCallback {
-            googleMap.snapshot(snapshotReadyCallback, bitmapfrommap)
-        }
-        googleMap.setOnMapLoadedCallback(onMapLoadedCallback)
-    }*/
-
-
-
-
-
-
-
-
-
-
-    //////////////////////////////////////////
 
 
     private fun getScreenShotFromView(v: View): Bitmap? {
@@ -220,7 +127,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
 
 
-
         screenShotButton.setOnClickListener {
             googleMap.snapshot {
                 it?.let {
@@ -257,24 +163,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             db.locationArrayDao().insert(current)
 
 
-            /*
-            //저장하는 기능(READ)
-            var size=0
-            val preferences = getSharedPreferences("0",0)
-            val jsonData=preferences.getString("0","")
-            val gson=Gson()
-            val token:TypeToken<MutableList<locationArray>> = object : TypeToken<MutableList<locationArray>>(){}
-            val list:MutableList<locationArray>?=gson.fromJson(jsonData,token.type)
-
-            //저장하는 기능(Write)
-            if (list != null) {
-                list.add(locationArray(latLng.latitude,latLng.longitude))
-            }
-            preferences.edit {
-                putString("0",gson.toJson(list,token.type))
-            }
-             */
-            //Toast.makeText(this, "${latLng.latitude},${latLng.longitude}",Toast.LENGTH_SHORT).show()
         }
 
 
