@@ -14,10 +14,15 @@ interface locationArrayDao {
     @Delete
     fun delete(location:locationArray)
 
+
+
     @Query("SELECT * FROM locationArray")
     fun getAll(): List<locationArray>
 
     @Query("SELECT * FROM locationArray WHERE id IN (:userIds)")
     fun loadAllByIds(userIds: IntArray): List<locationArray>
+
+    @Query("DELETE FROM locationArray WHERE id = :saveId")
+    fun deleteData(saveId: Int)
 
 }

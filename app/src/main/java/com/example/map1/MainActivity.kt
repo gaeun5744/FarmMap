@@ -15,6 +15,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -29,6 +30,8 @@ import java.io.OutputStream
 
 class MainActivity : AppCompatActivity() {
 
+
+
     private val mapButton:AppCompatButton by lazy {
         findViewById(R.id.mapButton)
     }
@@ -36,6 +39,12 @@ class MainActivity : AppCompatActivity() {
     private val markerButtom:AppCompatButton by lazy {
         findViewById(R.id.markerButton)
     }
+
+    private val markerList:RecyclerView by lazy {
+        findViewById(R.id.markerList)
+    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         markerButtom.setOnClickListener {
-
+            startActivity(Intent(this,com.example.map1.markerList::class.java))
         }
 
 

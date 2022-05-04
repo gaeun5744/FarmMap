@@ -154,7 +154,6 @@ class satelliteMap: AppCompatActivity(), OnMapReadyCallback {
 
             db.locationArrayDao().insert(current)
 
-
         }
 
 

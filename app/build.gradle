@@ -2,10 +2,18 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
 }
 
 android {
     compileSdk 32
+    buildFeatures {
+        viewBinding = true
+        dataBinding=true
+    }
+    viewBinding {
+        enabled = true
+    }
 
     defaultConfig {
         applicationId "com.example.map1"

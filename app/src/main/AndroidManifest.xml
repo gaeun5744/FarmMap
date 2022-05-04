@@ -28,6 +28,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".satelliteMap"/>
+        <activity android:name=".markerList"/>
+
+
     </application>
 
 </manifest>
