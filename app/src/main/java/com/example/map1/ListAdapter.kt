@@ -19,7 +19,14 @@ class ListAdapter(val itemList:ArrayList<locationArray>): RecyclerView.Adapter<L
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListAdapter.ViewHolder {
 
         val view=LayoutInflater.from(parent.context).inflate(R.layout.marker_cardlist,parent,false)
-        return ViewHolder(view)
+        val ViewHolder=ViewHolder(view)
+
+        view.setOnClickListener {
+            var position=ViewHolder.adapterPosition
+            //onItemClickListner?.
+        }
+
+        return ViewHolder
     }
 
     override fun getItemCount(): Int {
@@ -52,12 +59,6 @@ class ListAdapter(val itemList:ArrayList<locationArray>): RecyclerView.Adapter<L
             itemClickListener.onClick(it, position)
         }
 
-        holder.apply {
-            //bind(item)
-        }
-
-
-
     }
 
     var mPosition=0
@@ -78,18 +79,13 @@ class ListAdapter(val itemList:ArrayList<locationArray>): RecyclerView.Adapter<L
     }
 
     class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
-        var view:View=itemView
-
 
         val index:TextView=itemView.findViewById(R.id.indexNumber)
         val latitude:TextView=itemView.findViewById(R.id.latitude)
         val longitude:TextView=itemView.findViewById(R.id.longitude)
         val deleteButton:Button=itemView.findViewById(R.id.deleteButton)
+
     }
-
-
-
-
 
 
     interface OnItemClickListener {

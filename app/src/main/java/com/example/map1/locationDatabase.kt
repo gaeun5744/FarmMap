@@ -20,7 +20,7 @@ abstract class locationDatabase: RoomDatabase() {
                         context.applicationContext,
                         locationDatabase::class.java,
                         "locationDatabase"
-                    ).build()
+                    ).allowMainThreadQueries().build()
                 }
             }
             return instance
