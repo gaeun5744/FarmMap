@@ -41,7 +41,7 @@ class ListAdapter(val itemList:ArrayList<locationArray>): RecyclerView.Adapter<L
 
         val item=itemList[position]
 
-        holder.index.text=itemList[position].id.toString()
+        holder.index.text=position.toString()
         holder.latitude.text=itemList[position].latitude.toString()
         holder.longitude.text=itemList[position].longitude.toString()
 
@@ -50,13 +50,14 @@ class ListAdapter(val itemList:ArrayList<locationArray>): RecyclerView.Adapter<L
         }
 
         holder.deleteButton.setOnClickListener {
+            itemClickListener.onClick(it, position,item.id)
             itemList.removeAt(position)
             notifyDataSetChanged()
 
         }
 
         holder.itemView.setOnClickListener {
-            itemClickListener.onClick(it, position)
+            itemClickListener.onClick(it, position,item.id)
         }
 
     }
@@ -89,7 +90,7 @@ class ListAdapter(val itemList:ArrayList<locationArray>): RecyclerView.Adapter<L
 
 
     interface OnItemClickListener {
-        fun onClick(v: View, position: Int)
+        fun onClick(v: View, position: Int,id:Int)
     }
     private lateinit var itemClickListener : OnItemClickListener
 

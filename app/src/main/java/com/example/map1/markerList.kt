@@ -48,42 +48,16 @@ class markerList : AppCompatActivity() {
         }
         //findViewById<RecyclerView>(R.id.markerList).adapter=ListAdapter(position as ArrayList<locationArray>)
 
-        val adapter=ListAdapter(itemList)
+        mAdapter=ListAdapter(itemList)
 
-        adapter.setItemClickListener(object : ListAdapter.OnItemClickListener{
-            override fun onClick(v: View, position:Int){
-                db?.locationArrayDao()?.deleteData(position)
-                itemList.removeAt(position)
-                adapter.notifyDataSetChanged()
-
+        mAdapter.setItemClickListener(object : ListAdapter.OnItemClickListener{
+            override fun onClick(v: View, position:Int,id:Int){
+                db?.locationArrayDao()?.deleteData(id)
+                mAdapter.notifyDataSetChanged()
                 Log.d("markerList","리스트!!: ${db!!.locationArrayDao().getAll()}")
-
-
             }
         })
-
-        recyclerView.adapter=adapter
-
-
-
-
-
-
-        /*for (i in 0 until position.size){
-            itemList.add(ListItem(i,position[i].latitude,position[i].longitude))
-        }*/
-
-       //var deleteButton:Button = findViewById<Button>(R.id.markerDelete)
-
-
-
-        findViewById<RecyclerView>(R.id.markerList).adapter=ListAdapter(position as ArrayList<locationArray>)
-
-        /*deleteButton.setOnClickListener {
-            mAdapter.removeItem(mAdpater.getPosition())
-        }*/
-
-
+        recyclerView.adapter=mAdapter
     }
 
 
