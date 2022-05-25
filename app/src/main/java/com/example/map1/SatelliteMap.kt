@@ -15,16 +15,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.room.Room
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 
-class satelliteMap: AppCompatActivity(), OnMapReadyCallback {
+class SatelliteMap: AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var db:locationDatabase
 
@@ -141,6 +143,10 @@ class satelliteMap: AppCompatActivity(), OnMapReadyCallback {
         var mMap = googleMap
         mMap.mapType= GoogleMap.MAP_TYPE_HYBRID
 
+
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(37.52,127.0)))
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(10.0F))
 
 
         mMap.setOnMapLongClickListener { latLng->

@@ -16,17 +16,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class markerList : AppCompatActivity() {
+class MarkerList : AppCompatActivity() {
 
     var db:locationDatabase?=null
 
-    val recyclerView:RecyclerView by lazy {
+    private val recyclerView:RecyclerView by lazy {
         findViewById(R.id.markerList)
     }
 
 
 
-    private lateinit var binding: ActivityMainBinding
     var itemList= arrayListOf<locationArray>()
 
     lateinit var mAdapter: ListAdapter
@@ -41,12 +40,12 @@ class markerList : AppCompatActivity() {
         db= locationDatabase.getInstance(this)
 
 
-        //db= Room.databaseBuilder(applicationContext,locationDatabase::class.java,"locationDatabase").allowMainThreadQueries().build()
+
         val position:List<locationArray> = db!!.locationArrayDao().getAll()
         if(position.isNotEmpty()){
             itemList.addAll(position)
         }
-        //findViewById<RecyclerView>(R.id.markerList).adapter=ListAdapter(position as ArrayList<locationArray>)
+
 
         mAdapter=ListAdapter(itemList)
 
@@ -54,7 +53,7 @@ class markerList : AppCompatActivity() {
             override fun onClick(v: View, position:Int,id:Int){
                 db?.locationArrayDao()?.deleteData(id)
                 mAdapter.notifyDataSetChanged()
-                Log.d("markerList","리스트!!: ${db!!.locationArrayDao().getAll()}")
+
             }
         })
         recyclerView.adapter=mAdapter

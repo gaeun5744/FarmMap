@@ -1,31 +1,10 @@
 package com.example.map1
 
-import android.content.ContentValues
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
-import android.util.Log
-import android.view.View
-import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
-import java.io.File
-import java.io.FileOutputStream
-import java.io.OutputStream
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -51,11 +30,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         mapButton.setOnClickListener {
-            startActivity(Intent(this,satelliteMap::class.java))
+            startActivity(Intent(this,SatelliteMap::class.java))
         }
 
         markerButtom.setOnClickListener {
-            startActivity(Intent(this,com.example.map1.markerList::class.java))
+            startActivity(Intent(this,com.example.map1.MarkerList::class.java))
         }
 
 

@@ -27,8 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".satelliteMap"/>
-        <activity android:name=".markerList"/>
+        <activity android:name=".SatelliteMap"/>
+        <activity android:name=".MarkerList"/>
 
 
     </application>

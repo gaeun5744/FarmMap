@@ -1,13 +1,12 @@
 package com.example.map1
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.map1.ListAdapter.ViewHolder
 import com.example.map1.databinding.ActivityMainBinding.bind
 import kotlinx.android.synthetic.main.marker_cardlist.view.*
 
@@ -18,15 +17,9 @@ class ListAdapter(val itemList:ArrayList<locationArray>): RecyclerView.Adapter<L
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListAdapter.ViewHolder {
 
-        val view=LayoutInflater.from(parent.context).inflate(R.layout.marker_cardlist,parent,false)
-        val ViewHolder=ViewHolder(view)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.marker_cardlist, parent, false)
 
-        view.setOnClickListener {
-            var position=ViewHolder.adapterPosition
-            //onItemClickListner?.
-        }
-
-        return ViewHolder
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
@@ -45,9 +38,6 @@ class ListAdapter(val itemList:ArrayList<locationArray>): RecyclerView.Adapter<L
         holder.latitude.text=itemList[position].latitude.toString()
         holder.longitude.text=itemList[position].longitude.toString()
 
-        holder.itemView.setOnClickListener {
-            setPosition(position)
-        }
 
         holder.deleteButton.setOnClickListener {
             itemClickListener.onClick(it, position,item.id)
@@ -56,28 +46,8 @@ class ListAdapter(val itemList:ArrayList<locationArray>): RecyclerView.Adapter<L
 
         }
 
-        holder.itemView.setOnClickListener {
-            itemClickListener.onClick(it, position,item.id)
-        }
-
     }
 
-    var mPosition=0
-
-    fun removeItem(position: Int){
-        if(position>0){
-            itemList.removeAt(position)
-            notifyDataSetChanged()
-        }
-    }
-
-    fun setPosition(position: Int){
-        mPosition=position
-    }
-
-    fun getPosition():Int{
-        return mPosition
-    }
 
     class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
 
@@ -97,8 +67,6 @@ class ListAdapter(val itemList:ArrayList<locationArray>): RecyclerView.Adapter<L
     fun setItemClickListener(itemClickListener: OnItemClickListener) {
         this.itemClickListener = itemClickListener
     }
-
-
 
 
 }
