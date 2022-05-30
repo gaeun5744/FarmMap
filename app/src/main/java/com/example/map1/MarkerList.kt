@@ -1,6 +1,7 @@
 package com.example.map1
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -47,16 +48,21 @@ class MarkerList : AppCompatActivity() {
         }
 
 
-        mAdapter=ListAdapter(itemList)
+        mAdapter=ListAdapter(itemList,)
 
         mAdapter.setItemClickListener(object : ListAdapter.OnItemClickListener{
             override fun onClick(v: View, position:Int,id:Int){
                 db?.locationArrayDao()?.deleteData(id)
                 mAdapter.notifyDataSetChanged()
 
+
             }
         })
         recyclerView.adapter=mAdapter
+
+
+
+
     }
 
 

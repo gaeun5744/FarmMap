@@ -15,6 +15,10 @@ android {
         enabled = true
     }
 
+    androidExtensions {
+        experimental true
+    }
+
     defaultConfig {
         applicationId "com.example.map1"
         minSdk 23
